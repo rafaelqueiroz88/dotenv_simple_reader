@@ -1,24 +1,15 @@
 <?php
 
 /**
- * 
+ * Get .env file from root folder and return array
  * @param String $address
  * @return array
  * @author Rafael Queiroz, (12) 98161-3370
  */
 function GetEnvinroment($address = null)
 {
-    if(is_null($address))
-    {
-        $address = __DIR__;
-    }
-    else
-    {
-        $location   = __DIR__ . $address;
-        $address    = $location;
-    }
-    echo $address;
-    if(file_exists($address . '.env'))
+
+    if(file_exists('.env'))
     {
         $file = file('.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     }
