@@ -1,69 +1,11 @@
 <?php
 
-/**
- * Get .env file from root folder and return array
- * @param String $address
- * @return array
- * @author Rafael Queiroz, (12) 98161-3370
- */
-function GetEnvinroment($address = null)
-{
+include_once 'getENV.php';
 
-    if(file_exists('.env'))
-    {
-        $file = file('.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    }
+$env = new Environment_Manager();
 
-    $params = array();
-    $values = array();
+// It print's a value from .env
+// echo getenv('NAME');
 
-    foreach ($file as $lines => $line)
-    {
-        $size           = strlen($line);
-        $has_hashtrag   = false;
-
-        for($i = 0; $i < $size; $i ++)
-        {
-            if($line[$i] == "#") {
-                $has_hashtrag = true;
-            }
-        }
-
-        $line_break = explode('=', $line);
-
-        if($has_hashtrag == false)
-        {
-            $params[$lines] = $line_break[0];        
-            $results        = explode('"', $line_break[1]);
-            $values[$lines] = $results[1];
-        }  
-
-        $has_hashtrag   = false;
-        $line_break     = null;
-    }
-
-    $i      = count($params);
-    $j      = count($values);
-    $env    = array();
-
-    if($i > $j || $i < $i) 
-    {
-        var_dump("Falha no arquivo .ENV local");
-    }
-    else
-    {
-        for($k = 0; $k <= $i; $k ++)
-        {
-            if(isset($params[$k]))
-            {
-                $env[$k]['parameter']   = $params[$k];
-                $env[$k]['value']       = $values[$k];
-            }
-        }
-    }
-
-    return $env;
-}
-
-$env = GetEnvinroment('/setup/');
-var_dump($env);
+// Print all environments
+phpinfo(INFO_ENVIRONMENT);
