@@ -2,7 +2,7 @@
 
 Access your application address (...localhost:<your_port_number>/<your_app_location>)
 
-Edit your own .env file and put it in root folder
+Edit your own .env file and put it in your app root folder
 
 It will ignore short line coments and return an array
 
